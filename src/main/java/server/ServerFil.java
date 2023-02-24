@@ -24,7 +24,7 @@ public class ServerFil extends Thread {
     }
 
     public void run() {
-        System.out.println("[INFO: Fil Generat]");
+        System.out.println("[INFO] Fil Generat");
 
         // Variables
         TxRxData resposta;
@@ -35,14 +35,13 @@ public class ServerFil extends Thread {
                 try {
                     // Captura del paquet
                     paquet = (TxRxData) obIn.readObject();
-                    System.out.println("[INFO: Paquet llegit]");
+                    System.out.println("[INFO] Objecte recuperat");
 
                     // Processar la petició del client
                     resposta = controlQuerys(paquet);
-                    //Object response = "Response to " + obj;
                     obOut.writeObject(resposta);
                     obOut.flush();
-                    System.out.println("[INFO: Resposta enviada]");
+                    System.out.println("[INFO] Resposta enviada\n");
 
                 } catch ( EOFException e) {
                     //System.out.println("Fluxe dades acabat");
@@ -59,6 +58,7 @@ public class ServerFil extends Thread {
                 if (obOut != null) {obOut.close();}
                 if (obIn != null) {obIn.close();}
                 if (socket != null) {socket.close();}
+                System.out.println("[INFO] Tancament de fluxes");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -71,20 +71,20 @@ public class ServerFil extends Thread {
 
         switch (paquet.getQuery()){
             case 1:
-                System.out.println("[INFO: Query Insert]");
+                System.out.println("[INFO] Query Insert");
                 resposta = crd.create(paquet.getUser());
                 break;
             case 2:
-                System.out.println("[INFO: Query Select]");
+                System.out.println("[INFO] Query Select");
                 resposta = crd.select(paquet.getUser());
 
                 break;
             case 3:
-                System.out.println("[INFO: Query Delete]");
-                resposta = crd.select(paquet.getUser());
+                System.out.println("[INFO] Query Delete");
+                resposta = crd.delete(paquet.getUser());
                 break;
             default:
-                System.out.println("[INFO: Bad Query]");
+                System.out.println("[INFO] Bad Query!");
                 resposta = new TxRxData("valor incorrecte");
         }
 

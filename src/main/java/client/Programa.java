@@ -18,7 +18,7 @@ public class Programa {
         // Aquest menú indica el sector del programa
         while (valorMenu != 0) {
 
-            System.out.println("\n   [[[ Menú Principal ]]] \n"
+            System.out.println("\n   Menú Principal\n"
                     + "1. Insertar Usuari.\n"
                     + "2. Consultar Usuari.\n"
                     + "3. Esborrar Usuari.\n"
@@ -43,16 +43,15 @@ public class Programa {
     private static void insert() throws IOException, ClassNotFoundException {
 
         // Variables
-        // User user = emplenarDades();
-        User user = new User(1,"Pere", "Mateu");
+        User user = emplenarDades();
+        // User user = new User(1,"Pere", "Mateu");
 
         // Preparar paquet d'enviament
         TxRxData paquet = new TxRxData(1, user);
 
         // Cridar al enviament
         TxRxData resPaquet = Client.tx(paquet);
-//        Client cli = new Client();
-//        cli.startTransmission(paquet);
+
         System.out.println(resPaquet.getResposta());
 
     }
@@ -65,7 +64,8 @@ public class Programa {
         TxRxData paquet = new TxRxData(2, user);
         // Cridar al enviament
         TxRxData resPaquet = Client.tx(paquet);
-        if (resPaquet.getResposta().equals("")){
+
+        if (resPaquet.getQuery() == 1){
             System.out.println("ID:     " + resPaquet.getUser().getId());
             System.out.println("Nom:    " + resPaquet.getUser().getNom());
             System.out.println("Cognom: " + resPaquet.getUser().getCognom());
@@ -97,7 +97,7 @@ public class Programa {
         System.out.println("Introduir nom:");
         user.setNom(Manager.introduirRespostaStr(2,false));
         System.out.println("Introduir Cognom:");
-        user.setNom(Manager.introduirRespostaStr(2,false));
+        user.setCognom(Manager.introduirRespostaStr(2,false));
 
         return user;
     }

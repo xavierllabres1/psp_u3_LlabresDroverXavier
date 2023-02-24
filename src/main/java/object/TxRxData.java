@@ -6,14 +6,14 @@ import java.io.Serializable;
 public class TxRxData implements Serializable {
 
     // Atributs
-    private String query;  // Indica el tipus de consulta a realitzar
+    private int query;  // Indica el tipus de consulta a realitzar (1 insert, 2 select, 3 delete)
     private String resposta;   // Indica el resultat de l'acció
     private User user;  // Objecte Usuari que transmet
 
-    public TxRxData(String query, User user) {
+    public TxRxData(int query, User user) {
         this.query = query;
         this.user = user;
-        this.resposta = "";
+
     }
 
     public TxRxData(String resposta) {
@@ -21,11 +21,11 @@ public class TxRxData implements Serializable {
     }
 
     // Getter i Setters
-    public String getQuery() {
+    public int getQuery() {
         return query;
     }
 
-    public void setQuery(String query) {
+    public void setQuery(int query) {
         this.query = query;
     }
 
@@ -43,5 +43,9 @@ public class TxRxData implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getResposta() {
+        return resposta;
     }
 }

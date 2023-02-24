@@ -9,7 +9,7 @@ import object.User;
 public class Programa {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         // Iniciar aplicació i solicitar informació
         // Variables
@@ -40,19 +40,21 @@ public class Programa {
 
     }
 
-    private static void insert(){
+    private static void insert() throws IOException, ClassNotFoundException {
 
         // Variables
-        User user = emplenarDades();
-        //User user = new User(1,"Pere", "Mateu");
+        // User user = emplenarDades();
+        User user = new User(1,"Pere", "Mateu");
 
         // Preparar paquet d'enviament
-        TxRxData paquet = new TxRxData("insert", user);
+        TxRxData paquet = new TxRxData(1, user);
 
         // Cridar al enviament
-        Client.tx(paquet);
+        TxRxData resPaquet = Client.tx(paquet);
 //        Client cli = new Client();
 //        cli.startTransmission(paquet);
+        System.out.println(resPaquet.getResposta());
+
     }
 
     private static void select(){

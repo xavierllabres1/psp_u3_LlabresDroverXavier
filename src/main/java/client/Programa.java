@@ -57,11 +57,33 @@ public class Programa {
 
     }
 
-    private static void select(){
+    private static void select() throws IOException, ClassNotFoundException {
+
+        System.out.println("Introduir id a cercar:");
+        User user = new User (Manager.introduirMenu(1,1000,2));  // Es limita a 1000 id
+
+        TxRxData paquet = new TxRxData(2, user);
+        // Cridar al enviament
+        TxRxData resPaquet = Client.tx(paquet);
+        if (resPaquet.getResposta().equals("")){
+            System.out.println("ID:     " + resPaquet.getUser().getId());
+            System.out.println("Nom:    " + resPaquet.getUser().getNom());
+            System.out.println("Cognom: " + resPaquet.getUser().getCognom());
+        } else {
+            System.out.println(resPaquet.getResposta());
+        }
+
 
     }
-    private static void delete(){
+    private static void delete() throws IOException, ClassNotFoundException {
 
+        System.out.println("Introduir id a esborrar:");
+        User user = new User (Manager.introduirMenu(1,1000,2));  // Es limita a 1000 id
+
+        TxRxData paquet = new TxRxData(3, user);
+        // Cridar al enviament
+        TxRxData resPaquet = Client.tx(paquet);
+        System.out.println(resPaquet.getResposta());
     }
 
     // Metode per introduir dades a un objecte User

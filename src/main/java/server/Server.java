@@ -30,44 +30,10 @@ public class Server {
 
     private TxRxData paquet;
 
-//
-//    public void start(int port) throws IOException, ClassNotFoundException {
-//        serverSocket = new ServerSocket(port);
-//        clientSocket = serverSocket.accept();
-//
-//        //out = new PrintWriter(clientSocket.getOutputStream(), true);
-//        //in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//
-//        obOut = new ObjectOutputStream(clientSocket.getOutputStream());
-//        obIn = new ObjectInputStream(clientSocket.getInputStream());
-//        boolean lectura = true;
-//
-//            while (lectura) {
-//                try {
-//                    Object obj = obIn.readObject();
-//                    System.out.println("Received object: " + obj);
-//
-//                    obOut.writeObject("Hello, Client!");
-//                    obOut.flush();
-//                } catch (EOFException e) {
-//                    System.out.println("all dades");
-//                    break;
-//                }
-//            }
-//            System.out.println("out while lectura");
-//
-//    }
-
-
 
     // Inici del servidor
     public static void main(String[] args) throws IOException {
-//        Server server = new Server();
-//        try {
-//            server.start(port);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
+
         boolean serverOn = true;
 
         // Iniciar el servidor

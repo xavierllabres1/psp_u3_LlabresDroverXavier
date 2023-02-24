@@ -76,12 +76,12 @@ public class ServerFil extends Thread {
                 break;
             case 2:
                 System.out.println("[INFO: Query Select]");
-                resposta = crd.create(paquet.getUser());
+                resposta = crd.select(paquet.getUser());
 
                 break;
             case 3:
                 System.out.println("[INFO: Query Delete]");
-                resposta = crd.create(paquet.getUser());
+                resposta = crd.select(paquet.getUser());
                 break;
             default:
                 System.out.println("[INFO: Bad Query]");

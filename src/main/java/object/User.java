@@ -15,6 +15,9 @@ public class User implements Serializable {
         this.cognom = cognom;
         this.nom = nom;
     }
+    public User(int id) {
+        this.id = id;
+    }
 
     public User(){
     };
